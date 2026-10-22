@@ -1,0 +1,10 @@
+{
+  "name": "ey-tax-advisor-for-ai-clients",
+  "version": "2.0.0",
+  "description": "Develop and submit a fictional EY enquiry with explicit client approval, check progress and answer information requests.",
+  "author": {
+    "name": "Imitation AI"
+  },
+  "displayName": "EY Tax Advisor For AI Clients",
+  "icon": "./ey-logo.jpeg"
+}

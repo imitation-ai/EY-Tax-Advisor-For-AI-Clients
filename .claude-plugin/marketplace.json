@@ -1,0 +1,13 @@
+{
+  "name": "ey-tax-advisor-for-ai-clients",
+  "owner": {
+    "name": "Imitation AI"
+  },
+  "plugins": [
+    {
+      "name": "ey-tax-advisor-for-ai-clients",
+      "source": "./packages/claude-client",
+      "description": "Client-approved EY tax enquiries and progress."
+    }
+  ]
+}

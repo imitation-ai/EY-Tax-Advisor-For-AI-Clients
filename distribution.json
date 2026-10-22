@@ -1,0 +1,11 @@
+{
+  "name": "EY Tax Advisor For AI Clients",
+  "slug": "ey-tax-advisor-for-ai-clients",
+  "skill": "ey-tax-advisor",
+  "repository": "imitation-ai/EY-Tax-Advisor-For-AI-Clients",
+  "visibility": "public",
+  "service": "ey-tax-advisor",
+  "origin": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io",
+  "surface": "client",
+  "version": "2.0.0"
+}

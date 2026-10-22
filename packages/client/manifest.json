@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.29",
+  "version": "2.0.0",
+  "id": "c8912055-6077-4518-b6dc-98cd9d04b72d",
+  "developer": {
+    "name": "Imitation AI",
+    "websiteUrl": "https://ey-tax-portal.redbay-b1f1e95a.uksouth.azurecontainerapps.io",
+    "privacyUrl": "https://ey-tax-portal.redbay-b1f1e95a.uksouth.azurecontainerapps.io/privacy",
+    "termsOfUseUrl": "https://ey-tax-portal.redbay-b1f1e95a.uksouth.azurecontainerapps.io/terms"
+  },
+  "name": {
+    "short": "EY Tax Advisor For AI Clients",
+    "full": "EY Tax Advisor For AI Clients"
+  },
+  "description": {
+    "short": "Develop and submit a fictional EY enquiry with explicit client approval.",
+    "full": "EY tax enquiry engineering demonstration by Imitation AI. Synthetic data only. Keeps intake state in your Cowork workspace and submits approved evidence to the intelligence centre."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#242933",
+  "agentSkills": [
+    {
+      "folder": "./skills/ey-tax-advisor"
+    }
+  ],
+  "agentConnectors": [
+    {
+      "id": "ey-tax-advisor-for-ai-clients",
+      "displayName": "EY Tax Advisor For AI Clients",
+      "description": "Guided intake and client-approved case submission",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/mcp",
+          "authorization": {
+            "type": "OAuthPluginVault",
+            "referenceId": "Y2ZmMTA3YzgtZDc5Yy00NGUwLWIzYmQtMTM5N2RkNTcxYTZhIyNkZjg5MTc4NC03MGYxLTQwNmEtYTU1My1jNTU3NDUxMzM2ZDY="
+          }
+        }
+      }
+    }
+  ],
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "ey-tax-advisor-for-ai-clients",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "ey-tax-advisor": {
+      "type": "streamable-http",
+      "url": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "dcr"
+            },
+            "authorizationUrl": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/oauth/authorize",
+            "tokenUrl": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/oauth/token",
+            "baseScopes": [
+              "api://5297f875-71c8-4dc7-97fd-0f44d8eb226b/client.intake",
+              "api://5297f875-71c8-4dc7-97fd-0f44d8eb226b/client.case.write",
+              "api://5297f875-71c8-4dc7-97fd-0f44d8eb226b/client.case.read",
+              "offline_access"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
