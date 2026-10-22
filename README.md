@@ -2,6 +2,8 @@
 
 Prepare an EY tax enquiry in your AI assistant, review exactly what will be shared, submit it with your approval, and follow progress. This repository contains only the client advisor app. It is a fictional engineering demonstration; an EY expert remains responsible for any tax advice.
 
+Start with your business question. The advisor uses your company name, asks relevant follow-up questions and investigates exceptions without assuming a country or expansion plan. Evidence requests depend on your enquiry. After you approve sending, the service checks document contents against configured requirements and makes missing or unsuitable information visible to the EY reviewer. Update the plugin and start a new enquiry to use the current strategy; existing enquiries retain their original version.
+
 ## Download and install
 
 Choose your assistant from [the latest release](https://github.com/imitation-ai/EY-Tax-Advisor-For-AI-Clients/releases/latest):
