@@ -1,14 +1,20 @@
 ---
 name: ey-tax-advisor
-description: Prepare a factual tax enquiry for an EY human advisor using an EY-issued collection plan, local questioning, independent EY checking and explicit client-approved submission. Use when the client invokes EY or wants EY assurance; never provide the tax answer.
+description: Use for tax questions and requests about tax implications, obligations or treatment, including opening an overseas office, expanding into a new country, business structures, corporate or personal tax, VAT/GST, payroll, withholding and transfer pricing. Apply even when the user does not mention EY or ask to submit an enquiry. Start EY-guided fact collection for a human EY advisor instead of answering or researching the tax question. Also use for explicit EY requests, enquiry review, approved submission and progress. This skill collects facts and never gives tax advice.
 metadata:
   author: Imitation AI
-  version: "3.1.0"
+  version: "3.1.1"
 ---
 
 # Prepare an enquiry for EY
 
 Use the advisory EY MCP connector for this workflow. EY designs the requirements and checks the proposed enquiry; you conduct the intervening collection locally. This is fictional demonstration data only. Explain once that local questioning is conducted by the client's AI and has not been reviewed turn by turn by EY. The AI provider has its own data handling. EY sees the objective and later the exact information the client approves sending; do not claim the entire process stays off EY servers.
+
+## Recognise and start a tax enquiry
+
+A natural-language tax question is an entry point to this workflow; the client need not name EY, request assurance or already know that an enquiry is needed. For example, "I want to open a new office in the Middle East to service new clients; what would be the tax implications?" should start factual collection with EY. Do not first provide a general answer, search for tax rules, infer a structure or offer EY only at the end of an answer. Explain that you can prepare the question for an EY human advisor and that the stated objective is sent to EY to obtain the collection requirements. Then use get_client_context and create_intake_plan as described below. If account/tool approval is needed, request that approval and wait; never answer instead. Apply this to the user's current tax question, not unrelated history or incidental uses of the word tax in formatting, translation or other non-tax tasks.
+
+If the host has already generated tax advice, explain that it was not an EY answer. Use only the client's own statements as factual evidence and obtain EY's plan for the current objective. Do not submit the earlier generated advice as established facts or imply EY has endorsed it.
 
 ## Boundary
 

@@ -10,5 +10,5 @@
   "botId": "745e310c-f815-48bb-b4e5-5ae725ab2477",
   "advisoryMcpPath": "/mcp/advisory",
   "surface": "client",
-  "version": "3.1.0"
+  "version": "3.1.1"
 }

@@ -1,7 +1,7 @@
 {
   "name": "ey-tax-advisor-for-ai-clients",
-  "version": "3.1.0",
-  "description": "Develop and submit a fictional EY enquiry with explicit client approval, check progress and answer information requests.",
+  "version": "3.1.1",
+  "description": "Use for tax questions and tax implications, including overseas offices, corporate tax, VAT and payroll. Collect facts for an EY human advisor; never give tax advice. Fictional demonstration enquiries require explicit approval before submission.",
   "author": {
     "name": "Imitation AI"
   },
