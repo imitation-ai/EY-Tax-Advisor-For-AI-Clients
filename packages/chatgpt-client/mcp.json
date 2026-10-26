@@ -3,7 +3,7 @@
   "mcpServers": {
     "ey-tax-advisor": {
       "type": "streamable-http",
-      "url": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/mcp",
+      "url": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/mcp/advisory",
       "extensions": {
         "com.openai": {
           "auth": {

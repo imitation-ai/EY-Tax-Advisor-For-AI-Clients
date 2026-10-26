@@ -8,6 +8,7 @@
   "origin": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io",
   "engine": "controlled",
   "botId": "745e310c-f815-48bb-b4e5-5ae725ab2477",
+  "advisoryMcpPath": "/mcp/advisory",
   "surface": "client",
-  "version": "3.0.0"
+  "version": "3.1.0"
 }

@@ -18,6 +18,12 @@ This version sends text enquiries. Selected documents are never silently include
 
 ## Other AI clients
 
-The Claude and ChatGPT/Codex ZIPs are entry-point plugins. They direct the user to the dedicated EY agent. They do not conduct intake, research answers or submit enquiries in a general assistant conversation. Earlier connector intake writes are rejected by the service.
+The Claude and ChatGPT ZIPs use the advisory mode described below. Their new endpoint supports local questioning from an EY-issued plan and independent checking before submission. The original direct MCP keeps its existing controlled-intake restrictions.
 
 `SHA256SUMS` accompanies each release. Maintainers can build all three formats with Node.js 24+, `zip`, `unzip` and `node scripts/build-plugins.mjs`.
+
+## Claude and ChatGPT advisory mode (3.1)
+
+The Claude and ChatGPT packages connect to the separate `/mcp/advisory` service. Invoke EY with your objective, receive its collection plan, answer factual questions locally, approve the proposed disclosure for EY checking, then explicitly approve the accepted enquiry for submission to an EY human advisor. The assistant must not answer the tax question. EY does not observe or count every local exchange.
+
+The Microsoft package keeps the dedicated controlled intake agent. Use the original mode to resume an existing enquiry. Updating a plugin does not update an already-running session. Reconnect the client connector to the new advisory URL, using the existing Microsoft sign-in; no new scopes or client secrets are required.
