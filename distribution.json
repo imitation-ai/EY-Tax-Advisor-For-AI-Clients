@@ -7,5 +7,5 @@
   "service": "ey-tax-advisor",
   "origin": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io",
   "surface": "client",
-  "version": "2.1.1"
+  "version": "2.2.1"
 }
