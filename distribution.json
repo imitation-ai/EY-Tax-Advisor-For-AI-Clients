@@ -1,11 +1,13 @@
 {
-  "name": "EY Tax Advisor For AI Clients",
+  "name": "EY Enquiry Intake",
   "slug": "ey-tax-advisor-for-ai-clients",
   "skill": "ey-tax-advisor",
   "repository": "imitation-ai/EY-Tax-Advisor-For-AI-Clients",
   "visibility": "public",
   "service": "ey-tax-advisor",
   "origin": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io",
+  "engine": "controlled",
+  "botId": "745e310c-f815-48bb-b4e5-5ae725ab2477",
   "surface": "client",
-  "version": "2.2.1"
+  "version": "3.0.0"
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "ey-tax-advisor-for-ai-clients",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "description": "Develop and submit a fictional EY enquiry with explicit client approval, check progress and answer information requests.",
   "author": {
     "name": "Imitation AI"
@@ -9,7 +9,7 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "EY Tax Advisor For AI Clients",
+        "displayName": "EY Enquiry Intake",
         "composerIcon": "./ey-logo.jpeg",
         "logo": "./ey-logo.jpeg"
       }

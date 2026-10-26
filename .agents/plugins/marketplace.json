@@ -1,7 +1,7 @@
 {
   "name": "ey-tax-advisor-for-ai-clients",
   "interface": {
-    "displayName": "EY Tax Advisor For AI Clients"
+    "displayName": "EY Enquiry Intake"
   },
   "plugins": [
     {

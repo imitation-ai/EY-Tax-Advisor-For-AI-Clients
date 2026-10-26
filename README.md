@@ -1,46 +1,23 @@
-# EY Tax Advisor For AI Clients
+# EY Enquiry Intake
 
-Prepare an EY tax enquiry in your AI assistant, review exactly what will be shared, submit it with your approval, and follow progress. This repository contains only the client advisor app. It is a fictional engineering demonstration; an EY expert remains responsible for any tax advice.
+Collect facts in the dedicated EY agent inside Microsoft Copilot Chat or Teams. Every reply passes through the EY service. The agent asks fixed intake questions, shows the exact enquiry for approval and confirms a successful submission for an EY human expert to answer. It never gives tax advice. Fictional demonstration data only.
 
-Start with your business question. The advisor uses your company name, asks relevant follow-up questions and investigates exceptions without assuming a country or expansion plan. Evidence requests depend on your enquiry. After you approve sending, the service checks document contents against configured requirements and makes missing or unsuitable information visible to the EY reviewer. Update the plugin and start a new enquiry to use the current strategy; existing enquiries retain their original version.
+## Install and start
 
-## Download and install
+Download `ey-tax-advisor-for-ai-clients-copilot-VERSION.zip` from [the latest release](https://github.com/imitation-ai/EY-Tax-Advisor-For-AI-Clients/releases/latest). Install it through your organisation's approved Microsoft app route, then open **EY Enquiry Intake** in Copilot Chat. This replaces the earlier client Cowork intake plugin.
 
-Choose your assistant from [the latest release](https://github.com/imitation-ai/EY-Tax-Advisor-For-AI-Clients/releases/latest):
+Sign in with your assigned EY client account when the agent prompts you. This account can differ from your main Microsoft 365 account. Credentials belong only on Microsoft's sign-in page.
 
-| Assistant | Download |
-| --- | --- |
-| Claude Chat, Cowork or Code | `ey-tax-advisor-for-ai-clients-claude-VERSION.zip` |
-| ChatGPT / Codex | `ey-tax-advisor-for-ai-clients-chatgpt-VERSION.zip` |
-| Microsoft Copilot Chat / Cowork | `ey-tax-advisor-for-ai-clients-cowork-VERSION.zip` |
+Use the reply box on each EY intake card and choose **Send reply**. This carries the exact intake context securely with every response. You can say that information is unknown, choose **Prepare EY review now**, or cancel. When ready, review the exact included conversation and use **Approve and send to EY**. Typing “yes” in another chat does not approve a disclosure. Successful submission displays the EY case ID. If sending fails, retry the same approved submission in the agent.
 
-Each ZIP installs only **EY Tax Advisor For AI Clients**. Choose the ZIP for your assistant; the downloads are formats of the same app.
+## Pausing and resuming
 
-In Claude, open **Customize → Plugins → Add → Upload plugin** and select the Claude ZIP. Alternatively, add `imitation-ai/EY-Tax-Advisor-For-AI-Clients` as a Git marketplace. It lists one app: **EY Tax Advisor For AI Clients**.
+Inactivity pauses an intake; it never submits it. Use **Continue / restore this intake** on the latest EY card to restore its encrypted conversation context after a service restart. Old cards cannot overwrite newer information or approve changed content. Unapproved conversation content is processed only for the current request; it is not kept in a server-side draft cache or persisted in the EY database.
 
-In ChatGPT or Codex, add this repository as a plugin marketplace where supported, or upload the ChatGPT ZIP where available. Microsoft users install the Cowork ZIP using their organisation’s supported app installation route.
+This version sends text enquiries. Selected documents are never silently included or dropped: the agent explains the channel limitation and requires explicit approval of a text enquiry with document gaps for EY to follow up.
 
-## Connect
+## Other AI clients
 
-1. Open the app’s **Connectors** tab and select **Connect**.
-2. Choose **Continue to Microsoft sign-in**. Use the username and initial password your administrator created in the platform. Complete any password change or MFA on Microsoft’s page.
-3. Return to your AI assistant and reconnect if prompted. Ask **“Check my EY Tax Advisor connection.”** This uses a read-only check and does not submit an enquiry.
+The Claude and ChatGPT/Codex ZIPs are entry-point plugins. They direct the user to the dedicated EY agent. They do not conduct intake, research answers or submit enquiries in a general assistant conversation. Earlier connector intake writes are rejected by the service.
 
-If Connect is disabled or says **Connects in sessions**, add a custom connector under **Customize → Connectors**, using this server URL:
-
-`https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/mcp`
-
-Choose OAuth, **Sign in now** and **Register automatically** where asked. Leave client credentials empty. Passwords belong only on Microsoft’s page. Installation is separate from account sign-in; each host surface needs its own verification.
-
-## Updating
-
-Upload the new Claude ZIP, or refresh this marketplace before updating its one plugin:
-
-```sh
-claude plugin marketplace update ey-tax-advisor-for-ai-clients
-claude plugin update ey-tax-advisor-for-ai-clients@ey-tax-advisor-for-ai-clients
-```
-
-Start a new session to load an updated package. Remove older installations before installing this renamed app to avoid duplicate connectors.
-
-`SHA256SUMS` accompanies each release. Run `shasum -a 256 -c SHA256SUMS` beside the downloaded ZIPs to check them. Maintainers can build the three host formats with Node.js 24+, `zip`, `unzip` and `node scripts/build-plugins.mjs`.
+`SHA256SUMS` accompanies each release. Maintainers can build all three formats with Node.js 24+, `zip`, `unzip` and `node scripts/build-plugins.mjs`.

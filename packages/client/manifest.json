@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.29/MicrosoftTeams.schema.json",
   "manifestVersion": "1.29",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "id": "c8912055-6077-4518-b6dc-98cd9d04b72d",
   "developer": {
     "name": "Imitation AI",
@@ -10,45 +10,52 @@
     "termsOfUseUrl": "https://ey-tax-portal.redbay-b1f1e95a.uksouth.azurecontainerapps.io/terms"
   },
   "name": {
-    "short": "EY Tax Advisor For AI Clients",
-    "full": "EY Tax Advisor For AI Clients"
+    "short": "EY Enquiry Intake",
+    "full": "EY Enquiry Intake"
   },
   "description": {
-    "short": "Develop and submit a fictional EY enquiry with explicit client approval.",
-    "full": "EY tax enquiry engineering demonstration by Imitation AI. Synthetic data only. Keeps intake state in your Cowork workspace and submits approved evidence to the intelligence centre."
+    "short": "Collect facts and send a client-approved enquiry to an EY expert.",
+    "full": "Dedicated EY enquiry intake. Every client reply is processed by the EY service. The agent collects facts, presents the exact enquiry for approval and confirms successful submission for human expert review. It never answers the tax question or provides advice. Fictional demonstration data only."
   },
   "icons": {
     "color": "color.png",
     "outline": "outline.png"
   },
   "accentColor": "#242933",
-  "agentSkills": [
-    {
-      "folder": "./skills/ey-tax-advisor"
-    }
-  ],
-  "agentConnectors": [
-    {
-      "id": "ey-tax-advisor-for-ai-clients",
-      "displayName": "EY Tax Advisor For AI Clients",
-      "description": "Guided intake and client-approved case submission",
-      "toolSource": {
-        "remoteMcpServer": {
-          "mcpServerUrl": "https://ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io/mcp",
-          "authorization": {
-            "type": "OAuthPluginVault",
-            "referenceId": "Y2ZmMTA3YzgtZDc5Yy00NGUwLWIzYmQtMTM5N2RkNTcxYTZhIyNkZjg5MTc4NC03MGYxLTQwNmEtYTU1My1jNTU3NDUxMzM2ZDY="
-          }
-        }
-      }
-    }
-  ],
   "copilotAgents": {
-    "declarativeAgents": [
+    "customEngineAgents": [
       {
-        "id": "ey-tax-advisor-for-ai-clients",
-        "file": "declarativeAgent.json"
+        "type": "bot",
+        "id": "745e310c-f815-48bb-b4e5-5ae725ab2477"
       }
     ]
-  }
+  },
+  "bots": [
+    {
+      "botId": "745e310c-f815-48bb-b4e5-5ae725ab2477",
+      "scopes": [
+        "copilot",
+        "personal"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false,
+      "commandLists": [
+        {
+          "scopes": [
+            "copilot",
+            "personal"
+          ],
+          "commands": [
+            {
+              "title": "Start intake",
+              "description": "Prepare a factual enquiry for EY expert review."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "validDomains": [
+    "ey-tax-advisor.redbay-b1f1e95a.uksouth.azurecontainerapps.io"
+  ]
 }

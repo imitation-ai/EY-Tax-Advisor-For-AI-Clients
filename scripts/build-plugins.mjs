@@ -9,7 +9,8 @@ const config=read('distribution.json'),{surface,version,slug,skill,origin}=confi
 if(!['client','expert'].includes(surface)||!/^\d+\.\d+\.\d+$/.test(version))throw new Error('Invalid distribution metadata.');
 if(process.env.RELEASE_TAG&&process.env.RELEASE_TAG!==`v${version}`)throw new Error('Release tag must match distribution version.');
 const packages=['chatgpt','claude'].map(host=>({dir:`${host}-${surface}`,name:`${slug}-${host}`,manifest:host==='claude'?'.claude-plugin/plugin.json':'plugin.json',files:[host==='claude'?'.claude-plugin/plugin.json':'plugin.json',host==='claude'?'.mcp.json':'mcp.json','ey-logo.jpeg',`skills/${skill}/SKILL.md`]}));
-packages.push({dir:surface,name:`${slug}-cowork`,manifest:'manifest.json',files:['manifest.json','declarativeAgent.json','ai-plugin.json','color.png','outline.png',`skills/${skill}/SKILL.md`]});
+const controlled=surface==='client'&&config.engine==='controlled';
+packages.push({dir:surface,name:`${slug}-${controlled?'copilot':'cowork'}`,manifest:'manifest.json',files:controlled?['manifest.json','color.png','outline.png']:['manifest.json','declarativeAgent.json','ai-plugin.json','color.png','outline.png',`skills/${skill}/SKILL.md`]});
 const allowed=new Set(packages.flatMap(p=>p.files.map(f=>`packages/${p.dir}/${f}`)));
 const walk=dir=>{for(const item of readdirSync(dir,{withFileTypes:true})){const path=resolve(dir,item.name);if(lstatSync(path).isSymbolicLink())throw new Error(`Symlinks are not permitted: ${relative(root,path)}`);if(item.isDirectory())walk(path);else if(!allowed.has(relative(root,path)))throw new Error(`Unexpected plugin file: ${relative(root,path)}`);}};
 walk(resolve(root,'packages'));
@@ -19,9 +20,13 @@ for(const pkg of packages){const manifest=read(`packages/${pkg.dir}/${pkg.manife
 for(const host of ['chatgpt','claude']){const path=`packages/${host}-${surface}/${host==='claude'?'.mcp.json':'mcp.json'}`,servers=read(path).mcpServers;if(Object.keys(servers).length!==1||Object.values(servers)[0].url!==origin+'/mcp')throw new Error(`Unexpected MCP connector: ${path}`);}
 for(const [file,key,path] of [['.agents/plugins/marketplace.json','path',`./packages/chatgpt-${surface}`],['.claude-plugin/marketplace.json',null,`./packages/claude-${surface}`]]){const catalog=read(file);if(catalog.name!==slug||catalog.plugins.length!==1||catalog.plugins[0].name!==slug||(key?catalog.plugins[0].source[key]:catalog.plugins[0].source)!==path)throw new Error('Marketplace must expose exactly this app.');}
 const manifest=read(`packages/${surface}/manifest.json`),connection=manifest.agentConnectors?.[0]?.toolSource?.remoteMcpServer;
+if(controlled) {
+ if(manifest.agentConnectors||manifest.agentSkills||manifest.copilotAgents?.declarativeAgents||manifest.copilotAgents?.customEngineAgents?.length!==1||manifest.bots?.length!==1||manifest.bots[0].botId!==manifest.copilotAgents.customEngineAgents[0].id||!manifest.bots[0].scopes.includes('copilot'))throw new Error('The EY client app must use the controlled custom engine exclusively.');
+} else {
 if(manifest.agentConnectors.length!==1||connection?.mcpServerUrl!==origin+'/mcp'||connection.authorization?.type!=='OAuthPluginVault'||!connection.authorization.referenceId||connection.authorization.referenceId.includes('${'))throw new Error('Unresolved Cowork connector.');
 const agent=read(`packages/${surface}/declarativeAgent.json`),plugin=read(`packages/${surface}/ai-plugin.json`);
 if(manifest.copilotAgents.declarativeAgents.length!==1||agent.actions.length!==1||!agent.instructions||agent.instructions.length>8000||plugin.runtimes.length!==1||plugin.runtimes[0].spec.url!==connection.mcpServerUrl||plugin.runtimes[0].auth.reference_id!==connection.authorization.referenceId||plugin.runtimes[0].auth.type!=='OAuthPluginVault')throw new Error('Unresolved Copilot Chat app.');
+}
 const output=resolve(root,'dist');rmSync(output,{recursive:true,force:true});mkdirSync(output,{recursive:true});const sums=[];
 for(const pkg of packages){const name=`${pkg.name}-${version}.zip`,archive=resolve(output,name);execFileSync('zip',['-q','-X',archive,...pkg.files],{cwd:resolve(root,`packages/${pkg.dir}`)});const members=execFileSync('unzip',['-Z1',archive],{encoding:'utf8'}).trim().split('\n');if(members.length!==pkg.files.length||members.some(f=>!pkg.files.includes(f)))throw new Error(`Unexpected ZIP entries in ${name}`);sums.push(`${createHash('sha256').update(readFileSync(archive)).digest('hex')}  ${name}`);}
 writeFileSync(resolve(output,'SHA256SUMS'),sums.join('\n')+'\n');console.log(`Validated and packaged ${config.name}: ${packages.length} host formats, version ${version}.`);
